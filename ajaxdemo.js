@@ -36,6 +36,52 @@ $(document).ready(function(){
         });
     });
 
+    var myData = 
+    [
+        {
+          "name": "Meowsy",
+          "species" : "cat",
+          "foods": {
+            "likes": ["tuna", "catnip"],
+            "dislikes": ["ham", "zucchini"]
+          }
+        },
+        {
+          "name": "Barky",
+          "species" : "dog",
+          "foods": {
+            "likes": ["bones", "carrots"],
+            "dislikes": ["tuna"]
+          }
+        },
+        {
+          "name": "Purrpaws",
+          "species" : "cat",
+          "foods": {
+            "likes": ["mice"],
+            "dislikes": ["cookies"]
+          }
+        }
+    ];
+
+    var jsonString = JSON.stringify(myData);
+    // JQUERY-AJAX POST DEMO
+    $("#butt").click(function(event){
+        $.ajax({
+            type: "POST",
+            url: "/orders",
+            data: jsonString,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(recvData){
+                console.log(recvData);
+            },
+            failure: function(errMsg) {
+                alert(errMsg);
+            }
+        });    
+    });
+    
     function renderHTML(data){
         var htmlString = "";
         for(var i=0; i<data.length; i++){
