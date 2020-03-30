@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
     var pageCounter = 1;
+    // AJAX GET DEMO
     $("#butt").click(function(event){
         event.preventDefault();
         var ourRequest = new XMLHttpRequest();
@@ -21,6 +22,18 @@ $(document).ready(function(){
         if(pageCounter > 3){
             pageCounter = 1;
         }
+    });
+
+    // JQUERY-AJAX GET DEMO
+    $("#butt2").click(function(event){
+        $.ajax({
+            type: 'GET',
+            url:  'https://learnwebcode.github.io/json-example/animals-1.json',
+            success: renderHTML,
+            error: function(){
+                console.error('Connection error');
+            }
+        });
     });
 
     function renderHTML(data){
